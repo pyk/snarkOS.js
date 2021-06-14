@@ -1,0 +1,18 @@
+{
+    "compilerOptions": {
+        "outDir": "dist",
+        "module": "commonjs",
+        "target": "ES2019",
+        "lib": ["ES2019"],
+        "alwaysStrict": true,
+        "strict": true,
+        "preserveConstEnums": true,
+        "moduleResolution": "node",
+        "sourceMap": true,
+        "esModuleInterop": true,
+        "types": [],
+        "skipLibCheck": true
+    },
+    "include": ["index.ts"],
+    "exclude": []
+}
