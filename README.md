@@ -1,4 +1,4 @@
-# snarkOS.js
+# snarkOS.js (Work in Progress)
 
 **snarkOS.js** is a [snarkOS](https://github.com/AleoHQ/snarkOS) JavaScript API
 which connects to the
