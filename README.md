@@ -5,6 +5,10 @@ which connects to the
 [snarkOS JSON-RPC](https://developer.aleo.org/autogen/testnet/rpc/concepts/rpc_server)
 spec.
 
+TODO:
+
+-   Add bundle using webpack in dist/snarkos.min.js
+
 ## Installation
 
 ### Node

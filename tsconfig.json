@@ -10,9 +10,9 @@
         "moduleResolution": "node",
         "sourceMap": true,
         "esModuleInterop": true,
-        "types": [],
+        "types": ["jest"],
         "skipLibCheck": true
     },
-    "include": ["index.ts"],
+    "include": ["src/index.ts"],
     "exclude": []
 }
