@@ -12,7 +12,7 @@ jobs:
 
         strategy:
             matrix:
-                node-version: [14.x, 15.x]
+                node-version: [14.x]
 
         # Service containers to run with `build` job
         services:
@@ -20,6 +20,8 @@ jobs:
             snarkos:
                 # Docker Hub image
                 image: bayu/snarkos:1.38
+                ports:
+                    - 3030:3030
 
         steps:
             - uses: actions/checkout@v2
