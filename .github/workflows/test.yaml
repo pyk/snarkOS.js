@@ -1,0 +1,31 @@
+name: snarkOS.js CI
+
+on:
+    push:
+        branches: [main]
+    pull_request:
+        branches: [main]
+
+jobs:
+    build:
+        runs-on: ubuntu-latest
+
+        strategy:
+            matrix:
+                node-version: [14.x, 15.x]
+
+        # Service containers to run with `build` job
+        services:
+            # Label used to access the service container
+            snarkos:
+                # Docker Hub image
+                image: bayu/snarkos:1.38
+
+        steps:
+            - uses: actions/checkout@v2
+            - name: Use Node.js ${{ matrix.node-version }}
+              uses: actions/setup-node@v1
+              with:
+                  node-version: ${{ matrix.node-version }}
+            - run: npm ci
+            - run: npm test
