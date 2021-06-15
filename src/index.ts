@@ -45,18 +45,30 @@ export class Client {
      * getNodeInfo returns information about the node.
      */
     public async getNodeInfo(): Promise<NodeInfo> {
-        const result = await this.rpcClient.request({
+        const resp = await this.rpcClient.request({
             method: "getnodeinfo",
             params: [],
         });
 
         return {
-            isBootnode: result.is_bootnode,
-            isMiner: result.is_miner,
-            isSyncing: result.is_syncing,
-            launched: result.launched,
-            listeningAddress: result.listening_addr,
-            version: result.version,
+            isBootnode: resp.is_bootnode,
+            isMiner: resp.is_miner,
+            isSyncing: resp.is_syncing,
+            launched: resp.launched,
+            listeningAddress: resp.listening_addr,
+            version: resp.version,
         };
+    }
+
+    /**
+     * getConnectionCount returns the number of connected peers this node has.
+     */
+    public async getConnectionCount(): Promise<number> {
+        const resp = await this.rpcClient.request({
+            method: "getconnectioncount",
+            params: [],
+        });
+
+        return resp;
     }
 }
