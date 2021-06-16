@@ -5,24 +5,25 @@
 import {
     RequestManager,
     HTTPTransport,
-    Client as OpenRPCCLient,
+    Client as OpenRPCClient,
 } from "@open-rpc/client-js";
 
 import { getNodeInfo, NodeInfo } from "./endpoints/getNodeInfo";
 import { getConnectionCount } from "./endpoints/getConnectionCount";
 import { getNodeStats, NodeStats } from "./endpoints/getNodeStats";
+import { getPeerInfo } from "./endpoints/getPeerInfo";
 
 /**
  * snarkOS client constructor
  */
 export class Client {
-    private rpcClient: OpenRPCCLient;
+    private rpcClient: OpenRPCClient;
 
     constructor(url: string) {
         // Setup new client using HTTPTransport
         // We may add function to setup other transport mechanism in the future
         const transport = new HTTPTransport(url);
-        this.rpcClient = new OpenRPCCLient(new RequestManager([transport]));
+        this.rpcClient = new OpenRPCClient(new RequestManager([transport]));
     }
 
     /**
@@ -44,5 +45,12 @@ export class Client {
      */
     public async getNodeStats(): Promise<NodeStats> {
         return await getNodeStats(this.rpcClient);
+    }
+
+    /**
+     * getPeerInfo returns the node's connected peers.
+     */
+    public async getPeerInfo(): Promise<Array<string>> {
+        return await getPeerInfo(this.rpcClient);
     }
 }
