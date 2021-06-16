@@ -17,6 +17,7 @@ import { getBlockHash } from "./endpoints/getBlockHash";
 import { getBlockCount } from "./endpoints/getBlockCount";
 import { getBlock, Block } from "./endpoints/getBlock";
 import { getBestBlockHash } from "./endpoints/getBestBlockHash";
+import { getRawTransaction } from "./endpoints/getRawTransaction";
 
 /**
  * snarkOS client constructor
@@ -94,5 +95,13 @@ export class Client {
      */
     public async getBestBlockHash(): Promise<string> {
         return await getBestBlockHash(this.rpcClient);
+    }
+
+    /**
+     * getRawTransaction returns hex encoded bytes of a transaction from its
+     * transaction id.
+     */
+    public async getRawTransaction(transactionID: string): Promise<string> {
+        return await getRawTransaction(this.rpcClient, transactionID);
     }
 }
