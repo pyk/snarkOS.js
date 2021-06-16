@@ -14,6 +14,7 @@ import { getNodeStats, NodeStats } from "./endpoints/getNodeStats";
 import { getPeerInfo } from "./endpoints/getPeerInfo";
 import { getBlockTemplate, BlockTemplate } from "./endpoints/getBlockTemplate";
 import { getBlockHash } from "./endpoints/getBlockHash";
+import { getBlockCount } from "./endpoints/getBlockCount";
 
 /**
  * snarkOS client constructor
@@ -70,5 +71,12 @@ export class Client {
      */
     public async getBlockHash(blockHeight: number): Promise<string> {
         return await getBlockHash(this.rpcClient, blockHeight);
+    }
+
+    /**
+     * getBlockCount returns the number of blocks in the best valid chain.
+     */
+    public async getBlockCount(): Promise<number> {
+        return await getBlockCount(this.rpcClient);
     }
 }
