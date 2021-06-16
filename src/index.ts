@@ -13,6 +13,7 @@ import { getConnectionCount } from "./endpoints/getConnectionCount";
 import { getNodeStats, NodeStats } from "./endpoints/getNodeStats";
 import { getPeerInfo } from "./endpoints/getPeerInfo";
 import { getBlockTemplate, BlockTemplate } from "./endpoints/getBlockTemplate";
+import { getBlockHash } from "./endpoints/getBlockHash";
 
 /**
  * snarkOS client constructor
@@ -56,9 +57,18 @@ export class Client {
     }
 
     /**
-     * getBlockTemplate returns the current mempool and consensus information known by this node.
+     * getBlockTemplate returns the current mempool and consensus information
+     * known by this node.
      */
     public async getBlockTemplate(): Promise<BlockTemplate> {
         return await getBlockTemplate(this.rpcClient);
+    }
+
+    /**
+     * getBlockHash returns the block hash of a block at the given block
+     * height in the best valid chain.
+     */
+    public async getBlockHash(blockHeight: number): Promise<string> {
+        return await getBlockHash(this.rpcClient, blockHeight);
     }
 }
