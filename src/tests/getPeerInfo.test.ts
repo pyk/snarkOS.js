@@ -2,7 +2,7 @@ import { Client } from "../index";
 
 const SNARKOS_NODE_URL = "http://localhost:3030";
 
-describe("getConnectionCount", () => {
+describe("getPeerInfo", () => {
     test("with accessible node url", async () => {
         const snarkos = new Client(SNARKOS_NODE_URL);
         const peers = await snarkos.getPeerInfo();
