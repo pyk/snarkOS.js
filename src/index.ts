@@ -16,6 +16,7 @@ import { getBlockTemplate, BlockTemplate } from "./endpoints/getBlockTemplate";
 import { getBlockHash } from "./endpoints/getBlockHash";
 import { getBlockCount } from "./endpoints/getBlockCount";
 import { getBlock, Block } from "./endpoints/getBlock";
+import { getBestBlockHash } from "./endpoints/getBestBlockHash";
 
 /**
  * snarkOS client constructor
@@ -86,5 +87,12 @@ export class Client {
      */
     public async getBlock(blockHash: string): Promise<Block> {
         return await getBlock(this.rpcClient, blockHash);
+    }
+
+    /**
+     * getBestBlockHash returns the block hash of the head of the best valid chain.
+     */
+    public async getBestBlockHash(): Promise<string> {
+        return await getBestBlockHash(this.rpcClient);
     }
 }
