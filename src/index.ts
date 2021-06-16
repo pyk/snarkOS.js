@@ -15,6 +15,7 @@ import { getPeerInfo } from "./endpoints/getPeerInfo";
 import { getBlockTemplate, BlockTemplate } from "./endpoints/getBlockTemplate";
 import { getBlockHash } from "./endpoints/getBlockHash";
 import { getBlockCount } from "./endpoints/getBlockCount";
+import { getBlock, Block } from "./endpoints/getBlock";
 
 /**
  * snarkOS client constructor
@@ -78,5 +79,12 @@ export class Client {
      */
     public async getBlockCount(): Promise<number> {
         return await getBlockCount(this.rpcClient);
+    }
+
+    /**
+     * getBlock returns information about a block from a block hash.
+     */
+    public async getBlock(blockHash: string): Promise<Block> {
+        return await getBlock(this.rpcClient, blockHash);
     }
 }
