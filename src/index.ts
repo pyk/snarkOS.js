@@ -18,6 +18,10 @@ import { getBlockCount } from "./endpoints/getBlockCount";
 import { getBlock, Block } from "./endpoints/getBlock";
 import { getBestBlockHash } from "./endpoints/getBestBlockHash";
 import { getRawTransaction } from "./endpoints/getRawTransaction";
+import {
+    getTransactionInfo,
+    TransactionInfo,
+} from "./endpoints/getTransactionInfo";
 
 /**
  * snarkOS client constructor
@@ -103,5 +107,14 @@ export class Client {
      */
     public async getRawTransaction(transactionID: string): Promise<string> {
         return await getRawTransaction(this.rpcClient, transactionID);
+    }
+
+    /**
+     * getTransactionInfo returns information about a transaction from a transaction id.
+     */
+    public async getTransactionInfo(
+        transactionID: string
+    ): Promise<TransactionInfo> {
+        return await getTransactionInfo(this.rpcClient, transactionID);
     }
 }
