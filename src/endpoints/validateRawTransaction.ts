@@ -1,5 +1,5 @@
 // Docs:
-// https://github.com/AleoHQ/snarkOS/blob/master/rpc/documentation/public_endpoints/decoderawtransaction.md
+// https://github.com/AleoHQ/snarkOS/blob/master/rpc/documentation/public_endpoints/validaterawtransaction.md
 import { Client as OpenRPCClient } from "@open-rpc/client-js";
 
 export async function validateRawTransaction(
