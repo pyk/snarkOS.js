@@ -24,6 +24,7 @@ import {
 } from "./endpoints/getTransactionInfo";
 import { decodeRawTransaction } from "./endpoints/decodeRawTransaction";
 import { validateRawTransaction } from "./endpoints/validateRawTransaction";
+import { createAccount, Account } from "./endpoints/createAccount";
 
 /**
  * snarkOS client constructor
@@ -137,5 +138,13 @@ export class Client {
         transactionHex: string
     ): Promise<boolean> {
         return await validateRawTransaction(this.rpcClient, transactionHex);
+    }
+
+    /**
+     * createAccount returns new account private key and its corresponding
+     * account address.
+     */
+    public async createAccount(): Promise<Account> {
+        return await createAccount(this.rpcClient);
     }
 }
