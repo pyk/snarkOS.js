@@ -22,6 +22,7 @@ import {
     getTransactionInfo,
     TransactionInfo,
 } from "./endpoints/getTransactionInfo";
+import { decodeRawTransaction } from "./endpoints/decodeRawTransaction";
 
 /**
  * snarkOS client constructor
@@ -116,5 +117,15 @@ export class Client {
         transactionID: string
     ): Promise<TransactionInfo> {
         return await getTransactionInfo(this.rpcClient, transactionID);
+    }
+
+    /**
+     * decodeRawTransaction returns information about a transaction from serialized
+     * transaction bytes.
+     */
+    public async decodeRawTransaction(
+        transactionHex: string
+    ): Promise<TransactionInfo> {
+        return await decodeRawTransaction(this.rpcClient, transactionHex);
     }
 }
