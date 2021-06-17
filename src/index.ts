@@ -23,6 +23,7 @@ import {
     TransactionInfo,
 } from "./endpoints/getTransactionInfo";
 import { decodeRawTransaction } from "./endpoints/decodeRawTransaction";
+import { validateRawTransaction } from "./endpoints/validateRawTransaction";
 
 /**
  * snarkOS client constructor
@@ -127,5 +128,14 @@ export class Client {
         transactionHex: string
     ): Promise<TransactionInfo> {
         return await decodeRawTransaction(this.rpcClient, transactionHex);
+    }
+
+    /**
+     * validateRawTransaction returns true if the transaction is valid.
+     */
+    public async validateRawTransaction(
+        transactionHex: string
+    ): Promise<boolean> {
+        return await validateRawTransaction(this.rpcClient, transactionHex);
     }
 }
