@@ -26,16 +26,30 @@ import { decodeRawTransaction } from "./endpoints/decodeRawTransaction";
 import { validateRawTransaction } from "./endpoints/validateRawTransaction";
 import { createAccount, Account } from "./endpoints/createAccount";
 
+export interface Authentication {
+    username: string;
+    password: string;
+}
+
 /**
  * snarkOS client constructor
  */
 export class Client {
     private rpcClient: OpenRPCClient;
 
-    constructor(url: string) {
+    constructor(url: string, auth?: Authentication) {
         // Setup new client using HTTPTransport
         // We may add function to setup other transport mechanism in the future
-        const transport = new HTTPTransport(url);
+        let headers = {};
+        if (auth) {
+            // Convert username:password to base64
+            const buff = Buffer.from(`${auth.username}:${auth.password}`);
+            headers = {
+                Authorization: `Basic ${buff.toString("base64")}`,
+            };
+        }
+
+        const transport = new HTTPTransport(url, { headers: headers });
         this.rpcClient = new OpenRPCClient(new RequestManager([transport]));
     }
 
