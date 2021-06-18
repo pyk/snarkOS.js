@@ -25,6 +25,7 @@ import {
 import { decodeRawTransaction } from "./endpoints/decodeRawTransaction";
 import { validateRawTransaction } from "./endpoints/validateRawTransaction";
 import { createAccount, Account } from "./endpoints/createAccount";
+import { getRecordCommitments } from "./endpoints/getRecordCommitments";
 
 export interface Authentication {
     username: string;
@@ -160,5 +161,13 @@ export class Client {
      */
     public async createAccount(): Promise<Account> {
         return await createAccount(this.rpcClient);
+    }
+
+    /**
+     * getRecordCommitments returns a list of record commitments that are
+     * stored on the full node.
+     */
+    public async getRecordCommitments(): Promise<Array<string>> {
+        return await getRecordCommitments(this.rpcClient);
     }
 }
