@@ -19,4 +19,15 @@ describe("createAccount", () => {
         const snarkos = new Client("http://localhost:9000");
         await expect(snarkos.createAccount).rejects.toThrowError();
     });
+
+    test("with invalid authentication", async () => {
+        expect.assertions(2);
+        const snarkos1 = new Client(SNARKOS_NODE_URL);
+        await expect(snarkos1.createAccount).rejects.toThrowError();
+        const snarkos2 = new Client(SNARKOS_NODE_URL, {
+            username: "random",
+            password: "random",
+        });
+        await expect(snarkos2.createAccount).rejects.toThrowError();
+    });
 });
