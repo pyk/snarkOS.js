@@ -4,9 +4,11 @@ const SNARKOS_NODE_URL = "http://localhost:3030";
 
 describe("createAccount", () => {
     test("with accessible node url", async () => {
-        const snarkos = new Client(SNARKOS_NODE_URL);
+        const snarkos = new Client(SNARKOS_NODE_URL, {
+            username: "snarkos",
+            password: "snarkos",
+        });
         const account = await snarkos.createAccount();
-        console.log(account);
 
         expect(account.privateKey).toBeDefined();
         expect(account.address).toBeDefined();
