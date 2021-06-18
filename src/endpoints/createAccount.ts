@@ -7,6 +7,8 @@ export interface Account {
     privateKey: string;
     // An Aleo account address
     address: string;
+    // An Aleo account view key
+    viewKey: string;
 }
 
 export async function createAccount(
@@ -20,5 +22,6 @@ export async function createAccount(
     return {
         privateKey: resp.private_key,
         address: resp.address,
+        viewKey: resp.view_key,
     };
 }

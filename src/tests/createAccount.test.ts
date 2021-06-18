@@ -12,6 +12,7 @@ describe("createAccount", () => {
 
         expect(account.privateKey).toBeDefined();
         expect(account.address).toBeDefined();
+        expect(account.viewKey).toBeDefined();
     });
 
     test("with inaccessible node url", async () => {
